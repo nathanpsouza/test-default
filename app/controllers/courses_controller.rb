@@ -22,10 +22,9 @@ class CoursesController < ApplicationController
   end
 
   def enroll
-    course = Course.find( params[:id] )
     student = Student.find( params[:student_id] )
 
-    if course.where(student: student).empty?
+    if @course.where(student: student).empty?
       @enrollment = course.enrollments.create(student: student)
       @link_to_see = view_context.link_to "Ver", student_path( student ), class: "btn btn-xs btn-default"
       @link_to_remove = view_context.link_to "Remover", cancel_enrollment_course_path( course, enrollment ), class: "btn btn-xs btn-danger", method: :delete, remote: true,  data: { confirm: "Você tem certeza?" }
@@ -35,9 +34,7 @@ class CoursesController < ApplicationController
   end
 
   def cancel_enrollment
-    course = Course.find( params[:id] )
-
-    @enrollment = course.enrollments.find( params[:enrollment_id] )
+    @enrollment = @course.enrollments.find( params[:enrollment_id] )
     @enrollment.destroy
   end
 
@@ -61,6 +58,6 @@ class CoursesController < ApplicationController
   end
 
   def find_course
-    @course = Course.joins(enrollments: :student).find( params[:id] )
+    @course = Course.find( params[:id] )
   end
 end
