@@ -24,10 +24,10 @@ class CoursesController < ApplicationController
   def enroll
     student = Student.find( params[:student_id] )
 
-    if @course.where(student: student).empty?
-      @enrollment = course.enrollments.create(student: student)
+    if @course.enrollments.where(student: student).empty?
+      @enrollment = @course.enrollments.create(student: student)
       @link_to_see = view_context.link_to "Ver", student_path( student ), class: "btn btn-xs btn-default"
-      @link_to_remove = view_context.link_to "Remover", cancel_enrollment_course_path( course, enrollment ), class: "btn btn-xs btn-danger", method: :delete, remote: true,  data: { confirm: "Você tem certeza?" }
+      @link_to_remove = view_context.link_to "Remover", cancel_enrollment_course_path( @course, @enrollment ), class: "btn btn-xs btn-danger", method: :delete, remote: true,  data: { confirm: "Você tem certeza?" }
     else
       @already_enrolled = true
     end
