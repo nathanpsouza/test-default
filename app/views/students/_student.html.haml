@@ -1,0 +1,7 @@
+%tr
+  %td= student.id
+  %td= student.name
+  %td
+    = link_to "Editar", edit_student_path( student ), class: "btn btn-xs btn-danger"
+    = link_to "Ver", student_path( student ), class: "btn btn-xs btn-default"
+    = link_to "Remover", student_path( student ), class: "btn btn-xs btn-warning", data: { confirm: "Voce tem certeza?" }, method: :delete
