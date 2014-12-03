@@ -29,6 +29,7 @@
 
       .row.page-box.content
         .col-md-12
+          = breadcrumbs pretext: "Você está aqui: ", separator: " &rsaquo; ", style: :bootstrap
           = yield
 
       = render "shared/footer"

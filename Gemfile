@@ -47,7 +47,7 @@ gem 'haml-rails'
 gem 'kaminari'
 gem 'draper'
 gem 'simple_form'
-
+gem "gretel"
 
 group :development, :test do
   gem "rspec-rails"
@@ -62,6 +62,7 @@ group :test do
   gem "launchy"
   gem "selenium-webdriver"
   gem 'shoulda-matchers', require: false
+  gem "codeclimate-test-reporter", require: nil
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

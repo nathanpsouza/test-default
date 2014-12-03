@@ -1,6 +1,8 @@
 - content_for :page_header do
   Informações do estudante
 
+- breadcrumb :student, @student
+
 %p
   %strong Nome:
   = @student.name
