@@ -26,7 +26,14 @@
             %h1
               = content_for?(:page_header) ? yield(:page_header) : "Defina o título da página"
 
-
+      - if flash[:notice]
+        #flash.alert.alert-info.js-alert(role="alert")
+          = flash[:notice]
+          %button( type="button" class="close" data-dismiss="alert")
+            %span( aria-hidden="true") &times;
+            %span.sr-only Fechar
+          :javascript
+            setTimeout(function() { $flash = $("#flash.alert"); $flash.fadeOut(function(){ $flash.remove() }) }, 5000);
       .row.page-box.content
         .col-md-12
           = breadcrumbs pretext: "Você está aqui: ", separator: " &rsaquo; ", style: :bootstrap

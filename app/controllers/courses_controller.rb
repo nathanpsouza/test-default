@@ -43,12 +43,12 @@ class CoursesController < ApplicationController
   end
 
   def update
-    flash[:notice] = "Estudante curso" if @course.update_attributes( course_params )
+    flash[:notice] = "Curso atualizado" if @course.update_attributes( course_params )
     respond_with( @course )
   end
 
   def destroy
-    flash[:notice] = "Estudante Removido" if @course.destroy
+    flash[:notice] = "Curso removido" if @course.destroy
     respond_with( @course )
   end
 
