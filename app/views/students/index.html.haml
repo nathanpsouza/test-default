@@ -10,6 +10,10 @@
       %td Nome
       %td Ações
   %tbody
-    = render @students
+    - unless @students.empty?
+      = render @students
+    - else
+      %tr
+        %td(colspan="3") Não existem estudantes cadastrados. Deseja #{link_to "cadastrar", new_student_path} agora?
 
 = paginate @students

@@ -13,6 +13,6 @@ $("#students-table").append(
     )
   )
 )
-$("#nothing").remove()
+$(".nothing").remove()
 <% end %>
 $("#students").val("")
