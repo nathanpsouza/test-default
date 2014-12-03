@@ -32,11 +32,8 @@ gem 'sunspot_solr', group: :development
 
 # visual
 gem 'bootstrap-sass', '~> 3.2.0'
-gem 'font-awesome-rails'
 gem 'bourbon'
 gem 'jquery-ui-rails'
-gem 'select2-rails'
-gem "gretel"
 gem 'ckeditor'
 
 gem 'carrierwave'
@@ -51,8 +48,6 @@ gem 'kaminari'
 gem 'draper'
 gem 'simple_form'
 
-#cache
-gem 'dalli'
 
 group :development, :test do
   gem "rspec-rails"
