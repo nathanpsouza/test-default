@@ -1,14 +1,14 @@
 - content_for :page_header do
-  Listagem de estudantes
+  Listagem de cursos
   .pull-right
     = link_to "Novo curso", new_course_path, class: "btn btn-primary"
 
 %table.table
   %thead
     %tr
-      %td #
-      %td Nome
-      %td Ações
+      %th(width="10%") #
+      %th(width="70%") Nome
+      %th(width="20%")
   %tbody
     - unless @courses.empty?
       = render @courses

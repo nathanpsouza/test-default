@@ -29,17 +29,22 @@ $(document).on 'ready page:load', ->
         success: (data) ->
           if(!data.length)
             response([
-              label: "Não foram encontrados resultados para sua busca.",
+              label: "Não foram encontrados resultados para sua busca. Clique para cadastar um estudante.",
               value: "-1"
             ])
           else
             response(data)
       )
     select: (event, ui) ->
-      if( confirm("Voce deseja matricular o estudante #{ui.item.label}?") )
-        $.post("/courses/#{window.course_id}/enroll/#{ui.item.value}").success( ->
-          console.log("matricula enviada")
-        )
+      if ui.item.value == "-1"
+        win = window.open(window.new_student_path, '_blank');
+        win.focus();
+        $("#students").val("")
+      else
+        if( confirm("Voce deseja matricular o estudante #{ui.item.label}?") )
+          $.post("/courses/#{window.course_id}/enroll/#{ui.item.value}").success( ->
+            console.log("matricula enviada")
+          )
 
       return false
   );

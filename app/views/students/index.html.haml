@@ -6,9 +6,9 @@
 %table.table
   %thead
     %tr
-      %td #
-      %td Nome
-      %td Ações
+      %th(width="10%") #
+      %th(width="70%") Nome
+      %th(width="20%")
   %tbody
     - unless @students.empty?
       = render @students

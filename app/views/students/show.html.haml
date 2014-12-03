@@ -21,6 +21,8 @@
   %strong Endereço:
   = @student.address
 
-= link_to "Listagem", students_path, class: "btn btn-default"
-= link_to "Editar", edit_student_path( @student ), class: "btn btn-danger"
-= link_to "Remover", student_path( @student ), class: "btn btn-warning", data: { confirm: "Voce tem certeza?" }, method: :delete
+%hr
+= link_to "Cadastrar estudante", new_student_path, class: "btn btn-default"
+= link_to "Listagem de estudantes", students_path, class: "btn btn-default"
+= link_to "Editar", edit_student_path( @student ), class: "btn btn-warning"
+= link_to "Remover", student_path( @student ), class: "btn btn-danger", data: { confirm: "Voce tem certeza?" }, method: :delete
