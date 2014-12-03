@@ -1,0 +1,45 @@
+- content_for :page_header do
+  Informações do curso
+:coffee
+  window.url = "#{search_students_path}"
+  window.course_id = "#{@course.id}"
+
+%p
+  %strong Nome:
+  = @course.name
+
+%p
+  %strong Descrição
+= @course.description
+
+%h3 Estudantes matriculados no curso
+%table.table
+  %thead
+    %tr
+      %th #
+      %th Nome
+      %th Matriculado em
+      %th
+  %tbody#students-table
+    - unless @course.enrollments.empty?
+      - EnrollmentDecorator.decorate_collection( @course.enrollments ).each do |enrollment|
+        - student = enrollment.student
+        %tr{id: "enrollment_#{enrollment.id}"}
+          %td= student.id
+          %td= student.name
+          %td= enrollment.created_at
+          %td
+            = link_to "Ver", student_path( student ), class: "btn btn-xs btn-default"
+            = link_to "Remover", cancel_enrollment_course_path( @course, enrollment ), class: "btn btn-xs btn-danger", method: :delete, remote: true, data: { confirm: "Você tem certeza?" }
+    - else
+      %tr.nothing
+        %td(colspan=3) Não existem estudantes matriculados.
+
+%h3 Matricular estudantes
+
+.form-group
+  = text_field_tag 'students', nil, class: 'form-control'
+
+= link_to "Listagem", courses_path, class: "btn btn-default"
+= link_to "Editar", edit_course_path( @course ), class: "btn btn-danger"
+= link_to "Remover", course_path( @course ), class: "btn btn-warning", data: { confirm: "Voce tem certeza?" }, method: :delete

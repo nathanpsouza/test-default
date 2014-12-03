@@ -37,6 +37,11 @@ gem 'bourbon'
 gem 'jquery-ui-rails'
 gem 'select2-rails'
 gem "gretel"
+gem 'ckeditor'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
 
 # Utilities
 gem 'foreigner'
@@ -73,5 +78,5 @@ end
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 

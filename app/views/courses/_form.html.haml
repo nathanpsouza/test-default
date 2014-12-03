@@ -1,0 +1,5 @@
+= simple_form_for @course do |f|
+  = f.input :name, label: "Nome"
+  = f.input :description, label: "Descrição", as: :ckeditor, input_html: { ckeditor: {toolbar: 'Full'} }
+  = f.submit "Salvar", class: "btn btn-primary"
+  = link_to "Cancelar", :back, class: "btn btn-default"

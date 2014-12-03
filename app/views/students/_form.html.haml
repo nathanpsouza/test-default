@@ -1,3 +1,42 @@
 = simple_form_for @student do |f|
-  = f.input :name, label: "Nome"
+
+  %fieldset
+    %legend Informações pessoais
+    .row
+      .col-md-6
+        = f.input :name, label: "Nome"
+      .col-md-3
+        = f.input :cpf, label: "CPF"
+      .col-md-3
+        = f.input :rg, label: "RG"
+
+  %fieldset
+    %legend Informações para contato
+    .row
+      .col-md-2
+        = f.input :ddd, label: "DDD"
+      .col-md-4
+        = f.input :phone, label: "Telefone"
+      .col-md-6
+        = f.input :email, label: "Email"
+  %fieldset
+    %legend Informações de endereço
+    .row
+      .col-md-4
+        = f.input :zip_code, label: "CEP", input_html: { class: "cep" }
+    .row
+      .col-md-6
+        = f.input :street, label: "Rua"
+      .col-md-3
+        = f.input :number, label: "Número"
+      .col-md-3
+        = f.input :complement, label: "Complemento"
+    .row
+      .col-md-4
+        = f.input :district, label: "Bairro"
+      .col-md-3
+        = f.input :city, label: "Cidade"
+      .col-md-3
+        = f.input :state, label: "Estado"
   = f.submit "Salvar", class: "btn btn-primary"
+  = link_to "Cancelar", :back, class: "btn btn-default"

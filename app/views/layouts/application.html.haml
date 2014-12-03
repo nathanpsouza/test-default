@@ -28,12 +28,7 @@
 
 
       .row.page-box.content
-        - if @render_sidebar.nil? || @render_sidebar
-          = render "shared/sidebar"
-          .col-md-8
-            = yield
-        - else
-          .col-md-12
-            = yield
+        .col-md-12
+          = yield
 
       = render "shared/footer"

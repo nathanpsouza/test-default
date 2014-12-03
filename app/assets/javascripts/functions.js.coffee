@@ -1,21 +1,45 @@
 $(document).on 'ready page:load', ->
-  $('.carousel').carousel(
-    interval: 5000
+  $('#student_cpf').mask('000.000.000-00')
+  $('#student_cep').mask('00000-000')
+  $('#student_ddd').mask("(00)", onComplete: (ddd)->
+    $("#student_phone").focus()
   )
-
-  $('#profile_cpf').mask('000.000.000-00')
-  $('#profile_cep').mask('00000-000')
-  $('#profile_ddd').mask("(00)", onComplete: (ddd)->
-    $("#profile_phone").focus()
-  )
-  $('#profile_phone').mask("0000-00009")
+  $('#student_phone').mask("0000-00009")
 
   $(".cep").mask("00000-000",
     onComplete: (cep) ->
       $.get("http://viacep.com.br/ws/#{cep}/json/").success( (data)->
-        $("#profile_district").val( data.bairro )
-        $("#profile_street").val( data.logradouro )
-        $("#profile_city").val( data.localidade )
-        $("#profile_state").val( data.uf )
+        $("#student_district").val( data.bairro )
+        $("#student_street").val( data.logradouro )
+        $("#student_city").val( data.localidade )
+        $("#student_state").val( data.uf )
+        $("#student_number").focus()
       )
   )
+
+
+  $("#students").autocomplete(
+    delay: 500
+    minLength: 3
+    source: (request, response) ->
+      $.ajax(
+        url: window.url
+        dataType: "json"
+        data: {q: request["term"]}
+        success: (data) ->
+          if(!data.length)
+            response([
+              label: "Não foram encontrados resultados para sua busca.",
+              value: "-1"
+            ])
+          else
+            response(data)
+      )
+    select: (event, ui) ->
+      if( confirm("Voce deseja matricular o estudante #{ui.item.label}?") )
+        $.post("/courses/#{window.course_id}/enroll/#{ui.item.value}").success( ->
+          console.log("matricula enviada")
+        )
+
+      return false
+  );

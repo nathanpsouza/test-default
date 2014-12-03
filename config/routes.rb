@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -54,5 +55,18 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :students
+  root to: "students#index"
+
+  resources :students do
+    collection do
+      get :search
+    end
+  end
+
+  resources :courses do
+    member do
+      post "enroll/:student_id" => "courses#enroll", as: :enroll
+      delete "cancel_enrollment/:enrollment_id" => "courses#cancel_enrollment", as: :cancel_enrollment
+    end
+  end
 end

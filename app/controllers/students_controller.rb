@@ -1,14 +1,22 @@
 class StudentsController < ApplicationController
-  respond_to :html
+  respond_to :html, :json
 
-  before_action :find_student, except: [:index, :new, :create]
+  before_action :find_student, except: [:index, :new, :create, :search]
 
   def index
-    respond_with( @students = Student.all )
+    respond_with( @students = StudentDecorator.decorate_collection( Student.page( params[:page] ) ) )
+  end
+
+  def search
+    query = Sunspot.search [Student] do
+      fulltext params[:q]
+    end
+
+    respond_with( @results = query.results )
   end
 
   def show
-    respond_with( @student )
+    respond_with( @student = @student.decorate )
   end
 
   def new
@@ -37,7 +45,7 @@ class StudentsController < ApplicationController
 
   private
   def student_params
-    params.require( :student ).permit( :name )
+    params.require( :student ).permit( :name, :email, :cpf, :rg, :ddd, :phone, :zip_code, :street, :number, :complement, :district, :city, :state  )
   end
 
   def find_student

@@ -1,0 +1,1 @@
+$("#enrollment_<%= @enrollment.id %>").remove()

@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require ckeditor/init
 //= require jquery.mask.min
+//= require jquery-ui
 //= require functions
 //= require turbolinks

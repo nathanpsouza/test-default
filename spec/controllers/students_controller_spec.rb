@@ -89,7 +89,7 @@ RSpec.describe StudentsController, :type => :controller do
 
     context "valid attributes" do
       it "located the requested @student" do
-        patch :update, id: student
+        patch :update, id: student, student: FactoryGirl.attributes_for( :student, name: "i change this!" )
         expect( assigns( :student ) ).to eq( student )
       end
 
@@ -124,6 +124,7 @@ RSpec.describe StudentsController, :type => :controller do
     let(:student) { FactoryGirl::create(:student) }
 
     it "deletes the student" do
+      student
       expect{
         delete :destroy, id: student
       }.to change( Student,:count ).by( -1 )

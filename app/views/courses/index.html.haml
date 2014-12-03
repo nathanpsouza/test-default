@@ -1,0 +1,15 @@
+- content_for :page_header do
+  Listagem de estudantes
+  .pull-right
+    = link_to "Novo curso", new_course_path, class: "btn btn-primary"
+
+%table.table
+  %thead
+    %tr
+      %td #
+      %td Nome
+      %td Ações
+  %tbody
+    = render @courses
+
+= paginate @courses
