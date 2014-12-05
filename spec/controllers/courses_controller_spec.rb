@@ -16,8 +16,13 @@ RSpec.describe CoursesController, :type => :controller do
     end
   end
 
-  describe "POST enroll"
-  describe "DELETE cancel_enrollment"
+  describe "POST enroll" do
+    it "enroll student on the course"
+  end
+
+  describe "DELETE cancel_enrollment" do
+    it "cancel student enrollment"
+  end
 
   describe "#GET show" do
     let( :course ) { FactoryGirl::create( :course ) }
