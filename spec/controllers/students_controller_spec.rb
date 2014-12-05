@@ -16,6 +16,8 @@ RSpec.describe StudentsController, :type => :controller do
     end
   end
 
+  describe "#GET search"
+
   describe "#GET show" do
     let( :student ) { FactoryGirl::create( :student ) }
 
